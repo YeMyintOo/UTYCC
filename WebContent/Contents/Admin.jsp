@@ -7,13 +7,39 @@
 <title>Add Student</title>
 </head>
 <body>
+	<script type="text/javascript">
+		var head;
+		if (window.XMLHttpRequest) {
+			head = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			head = new ActiveXObject("MICROSOFT.XMLHTTP");
+		}
+		function isSerialed() {
+			var key = document.getElementById("serial").value;
+			var url = "/University/SRegister?key=" + key;
+			head.open("GET", url);
+			head.setRequestHeader("Context-type",
+					"application/x-www-form-urlencoded");
+			head.onreadystatechange = receiveMsg();
+			head.send();
+		}
+
+		function receiveMsg() {
+			if (head.readyState == 4 && head.status == 200) {
+				alert("Request success");
+			} else {
+				alert("There was a problem with the request");
+			}
+		}
+	</script>
 	<center>
 		<h2>Student Register Form</h2>
-		<form action="" method="post">
+		<form action="/University/SRegister" method="post">
 			<table>
 				<tr>
 					<td>Serial</td>
-					<td><input type="text" name="serial" /></td>
+					<td><input type="text" id="serial" name="serial"
+						onblur="isSerialed();" /></td>
 					<td><label id="err_serial"></label></td>
 				</tr>
 
@@ -69,8 +95,12 @@
 					<td></td>
 					<td><input type="submit" value="Add Student" /></td>
 				</tr>
+
 			</table>
 		</form>
+		<h5>
+			<a href="#">Add Student From MS Access</a>
+		</h5>
 	</center>
 </body>
 </html>

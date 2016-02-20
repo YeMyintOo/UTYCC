@@ -7,11 +7,10 @@
 <title>Welcome UTYCC</title>
 </head>
 <body>
-
 	<center>
 		<h2>Welcome To UTYCC</h2>
 		<h4>Student Login</h4>
-		<form action="" method="get">
+		<form action="/University/SLogin" method="get">
 			<table>
 				<tr>
 					<td>Serial:</td>
